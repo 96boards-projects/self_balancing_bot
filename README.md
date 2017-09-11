@@ -62,7 +62,7 @@ $ sudo apt-get upgrade
 # 4) Self Balancing Bot - Rev 1
 
 This is the first revision of **Self Balancing Bot**. This revision uses complimentary filter for sensor fusion and lacks 
-Bluetooth control. Due to accelerometer drift, balancing is not stable.
+Bluetooth control. Due to gyroscope drift and accelerometer noise, balancing is not stable.
 
 ![Self Balancing Bot](./bot.png)
 
