@@ -63,11 +63,15 @@ $ sudo apt-get upgrade
 This is the first revision of **Self Balancing Bot**. This revision uses complimentary filter for sensor fusion and lacks 
 Bluetooth control. Due to accelerometer drift, balancing is not stable.
 
+![Self Balancing Bot](./bot.png)
+
 ## 4.1) Hardware setup
 
+![Schematic Diagram](./bot1.png)
+
 - Make sure the 96Boards CE is powered off
-- Connect I/O devices (Monitor, Keyboard, etc...)
-- Connect Sensors Mezzanine
+- Assemble the setup in a chasis as per above schematic
+- Connect Arduino to 96Boards CE using USB cable
 - Power on your 96Boards CE with compatible power supply
 
 ## 4.2) Building
