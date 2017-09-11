@@ -14,12 +14,13 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
    - [2.2) Software Dependencies](#22-software-dependencies)
 - [3) Measuring tilt using IMU](#3-measuring-tilt-using-imu)
    - [3.1) Hardware setup](#31-hardware-setup)
-- [4) Self Balancing Bot - Rev 1](#4-self-balancing-bot-rev-1)
+- [4) Self Balancing Bot - Rev 1](#4-self-balancing-bot---rev-1)
    - [4.1) Hardware setup](#41-hardware-setup)
    - [4.2) Building](#42-building)
    - [4.3) Self Balancing Bot in action](#43-self-balancing-bot-in-action)
+   - [4.4) Video Demonstration](#44-video-demonstration)
 - [5) Establishing Bluetooth communication to CE board](#5-establishing-bluetooth-communication-to-ce-board)
-- [6) Self Balancing Bot - Rev 2](#6-self-balancing-bot-rev-2)
+- [6) Self Balancing Bot - Rev 2](#6-self-balancing-bot---rev-2)
 
 # 1) Hardware
 
@@ -51,7 +52,7 @@ $ sudo apt-get upgrade
 
 # 3) [Measuring tilt using IMU](https://github.com/96boards-projects/imu)
 
-## 3.1) Hardware setup
+## 3.1) Hardware Setup
 
 - Make sure the 96Boards CE is powered off
 - Connect I/O devices (Monitor, Keyboard, etc...)
@@ -65,7 +66,7 @@ Bluetooth control. Due to accelerometer drift, balancing is not stable.
 
 ![Self Balancing Bot](./bot.png)
 
-## 4.1) Hardware setup
+## 4.1) Hardware Setup
 
 ![Schematic Diagram](./bot1.png)
 
@@ -73,6 +74,10 @@ Bluetooth control. Due to accelerometer drift, balancing is not stable.
 - Assemble the setup in a chasis as per above schematic
 - Connect Arduino to 96Boards CE using USB cable
 - Power on your 96Boards CE with compatible power supply
+
+>Note:
+> 1. Assume Sensors Mezzanine is placed on top of CE board and use groove connector for connecting MPU6050 to I2C0 connector
+> 2. Use two separate batteries for powering CE board and Sensors Mezzanine
 
 ## 4.2) Building
 
@@ -93,7 +98,11 @@ $ sudo ./motor_control
 ```
 Bot should stabilize itself by moving back and forth.
 
->Note: Due to accelerometer drift, bot may fail to stabilize in few moments. This will be overcomed in **Rev-2** using DMP.
+>Note: Due to accelerometer drift, bot may fail to stabilize in few moments. This will be addressed in **Rev-2** using DMP.
+
+## 4.4) Video Demonstration
+
+[Demonstration Video](https://www.youtube.com/watch?v=eRnURzfUmaw)
 
 # 5) Establishing Bluetooth communication to CE board 
 
