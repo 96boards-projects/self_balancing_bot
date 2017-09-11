@@ -77,7 +77,7 @@ Bluetooth control. Due to accelerometer drift, balancing is not stable.
 
 >Note:
 > 1. Assume Sensors Mezzanine is placed on top of CE board and use groove connector for connecting MPU6050 to I2C0 connector
-> 2. Use two separate batteries for powering CE board and Sensors Mezzanine
+> 2. Use two separate batteries for powering CE board and Motor driver
 
 ## 4.2) Building
 
