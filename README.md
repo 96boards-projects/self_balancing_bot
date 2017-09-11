@@ -9,15 +9,17 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
 # Table of Contents
 - [1) Hardware](#1-hardware)
    - [1.1) Hardware requirements](#11-hardware-requirements)
-   - [1.2) Hardware setup](#12-hardware-setup)
 - [2) Software](#2-software) 
    - [2.1) Operating System](#21-operating-system)
    - [2.2) Software Dependencies](#22-software-dependencies)
 - [3) Measuring tilt using IMU](#3-measuring-tilt-using-imu)
-- [4) Implementing PID controller](#4-implementing-pid-controller)
-- [5) Controlling DC motors using Sensors Mezzanine](#5-controlling-dc-motors-using-sensors-mezzanine)
-- [6) Establishing Bluetooth communication to CE board](#6-establishing-bluetooth-communication-to-ce-board)
-- [7) Self Balancing Bot in action](#7-self-balancing-bot-in-action)
+   - [3.1) Hardware setup](#31-hardware-setup)
+- [4) Self Balancing Bot - Rev 1](#4-self-balancing-bot-rev-1)
+   - [4.1) Hardware setup](#41-hardware-setup)
+   - [4.2) Building](#42-building)
+   - [4.3) Self Balancing Bot in action](#43-self-balancing-bot-in-action)
+- [5) Establishing Bluetooth communication to CE board](#5-establishing-bluetooth-communication-to-ce-board)
+- [6) Self Balancing Bot - Rev 2](#6-self-balancing-bot-rev-2)
 
 # 1) Hardware
 
@@ -29,17 +31,10 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
 - [Chasis](https://nevonexpress.com/Self-Balancing-Robot-Chassis-Body-Diy.php)
 - [IMU 6 DoF - MPU6050](http://www.amazon.in/GY-521-Mpu6050-Accelerometer-Arduino-REES52/dp/B008BOPN40/ref=sr_1_1?ie=UTF8&qid=1501573522&sr=8-1&keywords=mpu6050)
 - [Motor Driver - L289N](http://www.amazon.in/Robodo-Electronics-Motor-Driver-Module/dp/B00N4KWYDE/ref=pd_sbs_328_1?_encoding=UTF8&psc=1&refRID=YESQPMRAEF73WTRQPRP1)
-- [DC motor](http://www.rhydolabz.com/robotics-motor-drivers-c-155_162/751-metal-gearmotor-25dx54l-mm-lp-12v-with-48-cpr-encoder-p-2281.html)
+- [DC motor](https://robokits.co.in/motors/300rpm-12v-dc-motor-with-gearbox)
 - [Dc to DC Boost Converter](http://www.amazon.in/KitsGuru-Step-up-Adjustable-Booster-Current/dp/B00HV59922)
 - [11.1v Battery for Board](http://robokits.co.in/batteries-chargers/lithium-ion-battery/li-ion-11.1v-2200mah-2c-with-inbuilt-charger-protection)
 - [11.1v Battery for Motors](http://robokits.co.in/batteries-chargers/lithium-ion-battery/lithium-ion-rechargeable-battery-pack-11.1v-2200mah-2c)
-
-## 1.2) Hardware setup
-
-- Make sure the 96Boards CE is powered off
-- Connect I/O devices (Monitor, Keyboard, etc...)
-- Connect Sensors Mezzanine
-- Power on your 96Boards CE with compatible power supply
 
 # 2) Software
 
@@ -53,20 +48,53 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
 $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
-# 3) [Measuring tilt using IMU](../imu)
 
-# 4) Implementing PID controller
+# 3) [Measuring tilt using IMU](https://github.com/96boards-projects/imu)
+
+## 3.1) Hardware setup
+
+- Make sure the 96Boards CE is powered off
+- Connect I/O devices (Monitor, Keyboard, etc...)
+- Connect Sensors Mezzanine
+- Power on your 96Boards CE with compatible power supply
+
+# 4) Self Balancing Bot - Rev 1
+
+This is the first revision of **Self Balancing Bot**. This revision uses complimentary filter for sensor fusion and lacks 
+Bluetooth control. Due to accelerometer drift, balancing is not stable.
+
+## 4.1) Hardware setup
+
+- Make sure the 96Boards CE is powered off
+- Connect I/O devices (Monitor, Keyboard, etc...)
+- Connect Sensors Mezzanine
+- Power on your 96Boards CE with compatible power supply
+
+## 4.2) Building
+
+***src*** directory in this project contains the source files and ***inc*** contains the header files. 
+```
+$ git clone https://github.com/96boards-projects/self_balancing_bot.git
+$ cd self_balancing_bot
+$ make
+```
+## 4.3) Self Balancing Bot in action
+
+After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in top level directory.
+
+Now, hold the bot in upright position and execute the following command to see Self Balancing Bot in action.
+
+```
+$ sudo ./motor_control
+```
+Bot should stabilize itself by moving back and forth.
+
+>Note: Due to accelerometer drift, bot may fail to stabilize in few moments. This will be overcomed in **Rev-2** using DMP.
+
+# 5) Establishing Bluetooth communication to CE board 
 
 Coming soon...
 
-# 5) Controlling DC motors using Sensors Mezzanine
-
-Coming soon...
-
-# 6) Establishing Bluetooth communication to CE board 
-
-Coming soon...
-
-# 7) Self Balancing Bot in action
+# 6) Self Balancing Bot - Rev 2
 
 Coming soon...
