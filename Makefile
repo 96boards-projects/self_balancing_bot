@@ -1,13 +1,13 @@
 CC := g++
 LDFLAGS := -lmraa -lm
-CFLAGS := -Wall -Wextra -g3
+CFLAGS := -g3
 SRCDIR := src
 INCDIR := inc
 OBJDIR := obj
 
 all: dirs motor_control
 
-motor_control: $(OBJDIR)/motor_control.o $(OBJDIR)/pid.o $(OBJDIR)/I2Cdev.o $(OBJDIR)/MPU6050.o
+motor_control: $(OBJDIR)/motor_control.o $(OBJDIR)/I2Cdev.o $(OBJDIR)/MPU6050.o
 	@$(CC) $(CFLAGS) -o $@ $^ $(LDFLAGS)
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.c
