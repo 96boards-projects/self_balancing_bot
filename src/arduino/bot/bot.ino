@@ -9,21 +9,18 @@
 #define MIN_ABS_SPEED 20
 
 // PID constants
-double Kp = 50;   
-double Kd = 2;
+double Kp = 15;   
 double Ki = 0;
+double Kd = 0.2;
 
-int led = 13;
-
-double originalSetpoint = 173;
-double setpoint = originalSetpoint;
-double movingAngleOffset = 0.1;
+double setpoint = -2.4;
 double input, output;
 
+// initialize PID
 PID pid(&input, &output, &setpoint, Kp, Ki, Kd, DIRECT);
 
 double motorSpeedFactorLeft = 0.6;
-double motorSpeedFactorRight = 0.5;
+double motorSpeedFactorRight = 0.9;
 
 // connect motor controller pins to Arduino digital pins
 // motor one
@@ -41,21 +38,23 @@ char buffer[10];
   
 void setup()
 {
+    // initialize uart
     Serial.begin(9600);
     //setup PID
     pid.SetMode(AUTOMATIC);
     pid.SetSampleTime(10);
     pid.SetOutputLimits(-255, 255);
-    pinMode(led, OUTPUT);
 }
   
 void loop() {
+  if (Serial.available() > 0) {
+    // read IMU data from 96Boards CE
     String val = Serial.readStringUntil('\n');
-    digitalWrite(led, HIGH);
     val.toCharArray(buffer, 10);
-    if (buffer != NULL) {
-      digitalWrite(led, HIGH);
-        pid.Compute();
-        motorController.move(output, MIN_ABS_SPEED);
-    }
+    input = atof(buffer);
+    // compute PID value for the IMU data
+    pid.Compute();
+    // drive motors according to the PID value
+    motorController.move(output, MIN_ABS_SPEED);
   }
+}

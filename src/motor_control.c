@@ -28,10 +28,6 @@
 #define TRUE (!FALSE)
 #endif
 
-#define KP  8.5
-#define KI  500
-#define KD  -0.008
-
 #define TIME_DELAY 2000
 #define LTIME (TIME_DELAY * 0.000001)
  
@@ -57,13 +53,13 @@ int main(void)
     	struct sigaction action;
 	uint8_t ret;
 	float degree;
-	char imu_data[20];
+	char imu_data[8];
 	uint16_t fifoCount;
 	
     	int baudrate = 9600, stopbits = 1, databits = 8;
         mraa_uart_parity_t parity = MRAA_UART_PARITY_NONE;
     	unsigned int ctsrts = FALSE, xonxoff = FALSE;
-        const char *name = NULL, *dev_path = "/dev/tty96B0";
+        const char *name = NULL, *dev_path = "/dev/ttyACM0";
 
     	memset(&action, 0, sizeof(struct sigaction));
     	action.sa_handler = sig_handler;
@@ -105,12 +101,13 @@ int main(void)
 			mpu.dmpGetGravity(&gravity, &q);
 			mpu.dmpGetYawPitchRoll(ypr, &q, &gravity);
 			degree = ypr[2] * 180/M_PI;
-			printf("x: %f\t", degree);
 
 			memset(imu_data, 0, sizeof(imu_data));
-
-			sprintf(imu_data, "%f\n", degree);
-
+			
+			/* send imu data to arduino */
+			sprintf(imu_data, "%f", degree);
+			strcpy(&imu_data[7], "\n");
+			printf("%s", imu_data);
 			mraa_uart_write(uart, (const char *)imu_data, sizeof(imu_data));
 		
 			}
