@@ -19,8 +19,11 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
    - [4.2) Building](#42-building)
    - [4.3) Self Balancing Bot in action](#43-self-balancing-bot-in-action)
    - [4.4) Video Demonstration](#44-video-demonstration)
-- [5) Establishing Bluetooth communication to CE board](#5-establishing-bluetooth-communication-to-ce-board)
 - [6) Self Balancing Bot - Rev 2](#6-self-balancing-bot---rev-2)
+   - [5.1) Hardware setup](#51-hardware-setup)
+   - [5.2) Building](#52-building)
+   - [5.3) Self Balancing Bot in action](#53-self-balancing-bot-in-action)
+   - [5.4) Video Demonstration](#54-video-demonstration)
 
 # 1) Hardware
 
@@ -61,8 +64,8 @@ $ sudo apt-get upgrade
 
 # 4) Self Balancing Bot - Rev 1
 
-This is the first revision of **Self Balancing Bot**. This revision uses complimentary filter for sensor fusion and lacks 
-Bluetooth control. Due to gyroscope drift and accelerometer noise, balancing is not stable.
+This is the first revision of **Self Balancing Bot**. This revision uses complimentary filter for sensor fusion and PID implementation is
+done in 96Boards CE. Due to gyroscope drift and accelerometer noise, balancing is not stable.
 
 ![Self Balancing Bot](./bot.png)
 
@@ -84,7 +87,7 @@ Bluetooth control. Due to gyroscope drift and accelerometer noise, balancing is 
 ***src*** directory in this project contains the source files and ***inc*** contains the header files. 
 ```
 $ git clone https://github.com/96boards-projects/self_balancing_bot.git
-$ cd self_balancing_bot
+$ cd self_balancing_bot/rev_1
 $ make
 ```
 ## 4.3) Self Balancing Bot in action
@@ -104,10 +107,43 @@ Bot should stabilize itself by moving back and forth.
 
 [Demonstration Video](https://www.youtube.com/watch?v=eRnURzfUmaw)
 
-# 5) Establishing Bluetooth communication to CE board 
+# 5) Self Balancing Bot - Rev 2
 
-Coming soon...
+The second revision of Self Balancing bot has the following changes compared to first revision:
 
-# 6) Self Balancing Bot - Rev 2
+1. Used DMP in MPU6050 for sensor fusion
+2. Offloaded PID calculation to Arduino (Sensors Mezzanine)
 
-Coming soon...
+## 5.1) Hardware Setup
+
+From the hardware perspective, there is no change from first revision.
+
+- Make sure the 96Boards CE is powered off
+- Assemble the setup in a chasis as per above schematic
+- Connect Arduino to 96Boards CE using USB cable
+- Power on your 96Boards CE with compatible power supply
+
+>Note:
+> 1. Assume Sensors Mezzanine is placed on top of CE board and use groove connector for connecting MPU6050 to I2C0 connector
+> 2. Use two separate batteries for powering CE board and Motor driver
+
+## 5.2) Building
+
+***src*** directory in this project contains the source files and ***inc*** contains the header files.
+```
+$ git clone https://github.com/96boards-projects/self_balancing_bot.git
+$ cd self_balancing_bot/rev_2
+$ make
+```
+## 5.3) Self Balancing Bot in action
+
+After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in top level directory.
+
+Now, hold the bot in upright position and execute the following command to see Self Balancing Bot in action.
+
+```
+$ sudo ./motor_control
+```
+Bot should stabilize itself by moving back and forth.
+
+## 5.4) Video Demonstration
