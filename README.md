@@ -52,6 +52,7 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
 $ sudo apt-get update
 $ sudo apt-get upgrade
 ```
+Install **MRAA** library as specified [here](https://github.com/96boards/documentation/blob/master/ConsumerEdition/guides/mraa/install.md)
 
 # 3) [Measuring tilt using IMU](https://github.com/96boards-projects/imu)
 
