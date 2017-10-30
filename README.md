@@ -19,7 +19,7 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
    - [4.2) Building](#42-building)
    - [4.3) Self Balancing Bot in action](#43-self-balancing-bot-in-action)
    - [4.4) Video Demonstration](#44-video-demonstration)
-- [5) Self Balancing Bot - Rev 2](#6-self-balancing-bot---rev-2)
+- [5) Self Balancing Bot - Rev 2](#5-self-balancing-bot---rev-2)
    - [5.1) Hardware setup](#51-hardware-setup)
    - [5.2) Building](#52-building)
    - [5.3) Self Balancing Bot in action](#53-self-balancing-bot-in-action)
