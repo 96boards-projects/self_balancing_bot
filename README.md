@@ -99,7 +99,7 @@ $ make
 Arduino is used to control the DC motors with the help of PWM. 96Boards CE will send the control commands to Arduino, which
 will get parsed and used to control motors.
 
-For programming Arduino, open ***src/bot/bot.ino*** using the Arduino IDE and click **Upload**.
+For programming Arduino, open ***src/bot/bot.ino*** using the Arduino IDE and select the appropriate Serial port ( **/dev/ttyACM*** for external arduino, **dev/tty96B0** for Sensors Mezzanine). Then, click **Upload**.
 
 ## 4.4) Self Balancing Bot in action
 
@@ -155,7 +155,7 @@ This revision uses 2 Arduino libraries:
 1. [PID library](https://github.com/br3ttb/Arduino-PID-Library)
 2. [Motor Controller library](https://github.com/lukagabric/Franko/tree/master/libraries/LMotorController)
 
-Both libraries are included in the repository under ***src/arduino/*** . Add both libraries to Arduino by following the guide [here](https://www.arduino.cc/en/Guide/Libraries). After installing the libraries, open the source code ***src/arduino/bot/bot.ino*** using Arduino IDE and click **Upload**.
+Both libraries are included in the repository under ***src/arduino/*** . Add both libraries to Arduino by following the guide [here](https://www.arduino.cc/en/Guide/Libraries). After installing the libraries, open the source code ***src/arduino/bot/bot.ino*** using Arduino IDE and select the appropriate Serial port ( **/dev/ttyACM*** for external arduino, **/dev/tty96B0** for Sensors Mezzanine). Then,click **Upload**.
 
 ## 5.4) Self Balancing Bot in action
 
