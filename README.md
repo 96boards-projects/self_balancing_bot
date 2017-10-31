@@ -99,7 +99,7 @@ $ make
 Arduino is used to control the DC motors with the help of PWM. 96Boards CE will send the control commands to Arduino, which
 will get parsed and used to control motors.
 
-For programming Arduino, open ***src/bot/bot.ino*** using the Arduino IDE and select the appropriate Serial port ( **/dev/ttyACM*** for external arduino, **dev/tty96B0** for Sensors Mezzanine). Then, click **Upload**.
+For programming Arduino, open ***src/arduino/bot/bot.ino*** using the Arduino IDE and select the appropriate Serial port ( **/dev/ttyACM*** for external arduino, **dev/tty96B0** for Sensors Mezzanine). Then, click **Upload**.
 
 ## 4.4) Self Balancing Bot in action
 
