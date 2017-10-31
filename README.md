@@ -17,13 +17,15 @@ controlling the DC motor will be offloaded to Arduino present on Sensors Mezzani
 - [4) Self Balancing Bot - Rev 1](#4-self-balancing-bot---rev-1)
    - [4.1) Hardware setup](#41-hardware-setup)
    - [4.2) Building](#42-building)
-   - [4.3) Self Balancing Bot in action](#43-self-balancing-bot-in-action)
-   - [4.4) Video Demonstration](#44-video-demonstration)
+   - [4.3) Programming Arduino](#43-programming-arduino)
+   - [4.4) Self Balancing Bot in action](#44-self-balancing-bot-in-action)
+   - [4.5) Video Demonstration](#45-video-demonstration)
 - [5) Self Balancing Bot - Rev 2](#5-self-balancing-bot---rev-2)
    - [5.1) Hardware setup](#51-hardware-setup)
    - [5.2) Building](#52-building)
-   - [5.3) Self Balancing Bot in action](#53-self-balancing-bot-in-action)
-   - [5.4) Video Demonstration](#54-video-demonstration)
+   - [5.3) Programming Arduino](#53-programming-arduino)
+   - [5.4) Self Balancing Bot in action](#54-self-balancing-bot-in-action)
+   - [5.5) Video Demonstration](#55-video-demonstration)
 
 # 1) Hardware
 
@@ -91,9 +93,17 @@ $ git clone https://github.com/96boards-projects/self_balancing_bot.git
 $ cd self_balancing_bot/rev_1
 $ make
 ```
-## 4.3) Self Balancing Bot in action
 
-After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in top level directory.
+## 4.3) Programming Arduino
+
+Arduino is used to control the DC motors with the help of PWM. 96Boards CE will send the control commands to Arduino, which
+will get parsed and used to control motors.
+
+For programming Arduino, open ***src/bot/bot.ino*** using the Arduino IDE and click **Upload**.
+
+## 4.4) Self Balancing Bot in action
+
+After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in ***rev_1*** directory.
 
 Now, hold the bot in upright position and execute the following command to see Self Balancing Bot in action.
 
@@ -104,7 +114,7 @@ Bot should stabilize itself by moving back and forth.
 
 >Note: Due to accelerometer drift, bot may fail to stabilize in few moments. This will be addressed in **Rev-2** using DMP.
 
-## 4.4) Video Demonstration
+## 4.5) Video Demonstration
 
 [Demonstration Video](https://www.youtube.com/watch?v=eRnURzfUmaw)
 
@@ -136,9 +146,20 @@ $ git clone https://github.com/96boards-projects/self_balancing_bot.git
 $ cd self_balancing_bot/rev_2
 $ make
 ```
-## 5.3) Self Balancing Bot in action
+## 5.3) Programming Arduino
 
-After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in top level directory.
+Arduino is used to control the DC motors with the help of PWM and PID controller. 96Boards CE will send the IMU data to Arduino which will be used as an input to the PID controller to control the motor positions.
+
+This revision uses 2 Arduino libraries:
+
+1. [PID library](https://github.com/br3ttb/Arduino-PID-Library)
+2. [Motor Controller library](https://github.com/lukagabric/Franko/tree/master/libraries/LMotorController)
+
+Both libraries are included in the repository under ***src/arduino/*** . Add both libraries to Arduino by following the guide [here](https://www.arduino.cc/en/Guide/Libraries). After installing the libraries, open the source code ***src/arduino/bot/bot.ino*** using Arduino IDE and click **Upload**.
+
+## 5.4) Self Balancing Bot in action
+
+After building, object files will get listed under ***obj*** directory and the final executable binary ***motor_control*** would be available in ***rev_2*** directory.
 
 Now, hold the bot in upright position and execute the following command to see Self Balancing Bot in action.
 
@@ -147,4 +168,4 @@ $ sudo ./motor_control
 ```
 Bot should stabilize itself by moving back and forth.
 
-## 5.4) Video Demonstration
+## 5.5) Video Demonstration
